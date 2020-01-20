@@ -103,7 +103,15 @@ mvn clean install
        ... ...
 </dependencies>
 ```
-4. 剩下的就是上述案例的内容啦~
+4. 在自己的spring boot**启动类**中的包扫描注解中加入`com.sleepy.jpql`包名
+```java
+@SpringBootApplication(scanBasePackages = {"com.sleepy.blog", "com.sleepy.jpql"})
+...
+public class SoBlogServiceApplication extends SpringBootServletInitializer {
+   ...
+}
+```
+5. 剩下的就是上述案例的内容啦~
 
 ## :running: 未完待续
 本项目刚刚提交，还未发布到Maven中央仓库，后续会发布到中央仓库，简化依赖引入
