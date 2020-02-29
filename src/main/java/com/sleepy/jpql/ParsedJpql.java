@@ -18,14 +18,6 @@ public class ParsedJpql extends Jpql {
     private String parsed;
     private Map<String, Object> parameterMap;
 
-    private static String toDateTimeStr(Date date) {
-        if (date == null) {
-            throw new NullPointerException("Please provide a valid Date.");
-        }
-
-        return new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(date);
-    }
-
     public Map<String, Object> getParameterMap() {
         return parameterMap;
     }
@@ -84,5 +76,13 @@ public class ParsedJpql extends Jpql {
             log.error("SQL转换失败：" + e.getMessage());
         }
         return jpqlStr.replaceAll("\\s+", " ");
+    }
+
+    private static String toDateTimeStr(Date date) {
+        if (date == null) {
+            throw new NullPointerException("Please provide a valid Date.");
+        }
+
+        return new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(date);
     }
 }
