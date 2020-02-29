@@ -113,8 +113,29 @@ public class SoBlogServiceApplication extends SpringBootServletInitializer {
 ```
 5. 剩下的就是上述案例的内容啦~
 
-## :running: 未完待续
-本项目刚刚提交，还未发布到Maven中央仓库，后续会发布到中央仓库，简化依赖引入
+## :running: maven私服引入
+私服为本人搭建，简化依赖引入，由于服务器性能较弱，不能保证始终提供服务。若无法访问私服，可通过本地编译的方式导入，详细见上面的**使用步骤**
+```bash
+<dependencies>
+       ... ...
+       <dependency>
+           <groupId>com.sleepy</groupId>
+           <artifactId>so-jpql-template-engine</artifactId>
+           <version>1.0.1.RELEASE</version>
+       </dependency>
+       ... ...
+</dependencies>
+... ...
+<repositories>
+    ... ...
+    <repository>
+        <id>oceanmaven</id>
+        <name>ocean maven</name>
+        <url>http://nexus.sleepyocean.cn/repository/maven-ocean/</url>
+    </repository>
+    ... ...
+</repositories>
+```
 
 ## :blue_heart: 版权说明
 该项目签署了Apache-2.0授权许可，详情请参阅 LICENSE.md
