@@ -30,17 +30,26 @@ public class JpqlExecutor<T> {
 
     public JpqlResultSet<T> exec(String jpqlId, Map<String, Object> params, Class<T> clazz) {
         String sql = jpqlParser.parse(new ParserParameter(jpqlId, params, "mysql")).getExecutableSql();
-        params.put("getTotal", 1);
-        String countSql = jpqlParser.parse(new ParserParameter(jpqlId, params, "mysql")).getExecutableSql();
         Session session = getSession();
         Query query = session.createNativeQuery(sql).addEntity(clazz);
-        Query countQuery = session.createNativeQuery(countSql);
         List<T> resultList = query.getResultList();
-        long count = Long.parseLong(countQuery.getResultList().get(0).toString());
         JpqlResultSet<T> result = new JpqlResultSet<>();
         result.setResultList(resultList);
-        result.setTotal(count);
+        result.setTotal(resultList.size());
         session.close();
+        return result;
+    }
+
+    public JpqlResultSet<T> execPageable(String jpqlId, Map<String, Object> params, Class<T> clazz) {
+        JpqlResultSet<T> result = exec(jpqlId, params, clazz);
+        if (result.getTotal() > 0) {
+            Session session = getSession();
+            params.put("pageable", 1);
+            String countSql = jpqlParser.parse(new ParserParameter(jpqlId, params, "mysql")).getExecutableSql();
+            Query countQuery = session.createNativeQuery(countSql);
+            result.setTotal(Long.parseLong(countQuery.getResultList().get(0).toString()));
+            session.close();
+        }
         return result;
     }
 }
