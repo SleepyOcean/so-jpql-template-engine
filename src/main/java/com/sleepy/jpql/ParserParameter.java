@@ -12,9 +12,21 @@ import java.util.Map;
  * @create 2020-01-18 10:46
  **/
 @Data
-@AllArgsConstructor
 public class ParserParameter {
     private String id;
     private Map<String, Object> parameter;
     private String dbType;
+
+    public ParserParameter(String id, Map<String, Object> parameter, String dbType) {
+        this.id = id;
+        this.parameter = parameter;
+        this.dbType = dbType;
+    }
+
+    public ParserParameter(String id, Map<String, Object> parameter) {
+        this(id, parameter, "mysql");
+    }
+
+    public ParserParameter() {
+    }
 }

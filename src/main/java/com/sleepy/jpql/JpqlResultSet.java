@@ -15,4 +15,16 @@ public class JpqlResultSet<T> {
     private List<T> resultList;
     private T result;
     private long total;
+
+    public JpqlResultSet(List<T> resultList, long total) {
+        this.resultList = resultList;
+        this.total = total;
+    }
+
+    public JpqlResultSet(T result) {
+        this.result = result;
+    }
+
+    public JpqlResultSet() {
+    }
 }

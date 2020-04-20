@@ -124,7 +124,6 @@ public class JpqlParser {
 
     }
 
-
     private void prepareForLike(HashMap<String, Object> map, String test, Object o, String key, StringBuilder value) {
         boolean start = test.startsWith("%");
         boolean end = test.endsWith("%");
