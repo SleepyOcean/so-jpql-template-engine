@@ -2,20 +2,10 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <parent>
-        <groupId>com.sleepy</groupId>
-        <artifactId>so-blog-server</artifactId>
-        <version>1.0.0</version>
-    </parent>
-    
     <groupId>com.sleepy</groupId>
     <artifactId>so-jpql-template-engine</artifactId>
     <packaging>jar</packaging>
-<!--    <version>1.0.2.RELEASE</version>-->
-
-    <properties>
-        <maven.deploy.skip>false</maven.deploy.skip>
-    </properties>
+    <version>1.1.0.RELEASE</version>
 
     <dependencies>
         <dependency>
@@ -66,4 +56,24 @@
         </dependency>
     </dependencies>
 
+    <distributionManagement>
+        <repository>
+            <id>oceanmaven</id>
+            <name>ocean maven</name>
+            <url>http://nexus.sleepyocean.cn/repository/maven-ocean/</url>
+        </repository>
+    </distributionManagement>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>1.8</source>
+                    <target>1.8</target>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 </project>
